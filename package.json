@@ -12,7 +12,7 @@
   },
   "author": "Nir Israel Hen",
   "repository": { "type": "git", "url": "git+https://github.com/controlfix87/tabby-control-tmux.git" },
-  "homepage": "https://github.com/controlfix87/tabby-control-tmux#readme",
+  "homepage": "https://controlfix.net/#projects",
   "license": "MIT",
   "peerDependencies": {
     "tabby-core": "*",
