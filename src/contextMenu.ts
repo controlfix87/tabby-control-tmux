@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core'
 import { BaseTabComponent, TabContextMenuItemProvider, MenuItemOptions } from 'tabby-core'
-import { log } from './log'
 import { TmuxService } from './tmux.service'
 
 @Injectable()
@@ -17,7 +16,6 @@ export class TmuxContextMenu extends TabContextMenuItemProvider {
 
 async function buildTmuxItems (tmuxSvc: TmuxService, tab: BaseTabComponent): Promise<MenuItemOptions[]> {
         const t = tab as any
-        log(`getItems tab=${tab?.constructor?.name} hasSSH=${!!t.sshSession}`)
         if (!t.sshSession) {
             return []
         }
@@ -54,8 +52,7 @@ async function buildTmuxItems (tmuxSvc: TmuxService, tab: BaseTabComponent): Pro
                     item('Close session', 'C', { click: () => tmuxSvc.closeCurrent(t) }),
                 ],
             }]
-        } catch (e) {
-            log(`error: ${e}`)
+        } catch {
             return []
         }
     }

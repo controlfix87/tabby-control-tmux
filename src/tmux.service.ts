@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core'
-import { log } from './log'
-
 type SSHTabComponent = any
 
 export interface TmuxSessionInfo { name: string, windows: number, attached: boolean }
@@ -33,7 +31,6 @@ export class TmuxService {
         ch.data$.subscribe((d: Uint8Array) => chunks.push(d))
         await ch.requestExec(command)
         await done
-        log(`exec ${command.slice(0, 60)} -> ${Buffer.concat(chunks).toString().slice(0, 100)}`)
         return { out: Buffer.concat(chunks).toString(), ok: true }
     }
 
