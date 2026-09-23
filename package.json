@@ -1,17 +1,25 @@
 {
   "name": "tabby-control-tmux",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "ControlTmux: right-click tmux controls for SSH tabs: new, attach, detach, close, and one-click tmux install",
-  "keywords": ["tabby-plugin"],
+  "keywords": [
+    "tabby-plugin"
+  ],
   "main": "dist/index.js",
   "typings": "typings/index.d.ts",
-  "files": ["dist", "typings"],
+  "files": [
+    "dist",
+    "typings"
+  ],
   "scripts": {
     "build": "webpack --mode production",
     "watch": "webpack --mode development --watch"
   },
   "author": "Nir Israel Hen",
-  "repository": { "type": "git", "url": "git+https://github.com/controlfix87/tabby-control-tmux.git" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/controlfix87/tabby-control-tmux.git"
+  },
   "homepage": "https://controlfix.net/#projects",
   "license": "MIT",
   "peerDependencies": {
