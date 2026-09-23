@@ -19,6 +19,20 @@ when you aren't root (you type the password in the terminal).
 Sessions are listed over a separate exec channel on the same SSH connection, so your terminal is never disturbed.
 It works alongside [tabby-tmux](https://github.com/ruanimal/tabby-tmux) (control mode); the two serve different purposes.
 
+## Preview
+
+```
+ ControlTmux
+ ├─ New session        N  ▸  Default name  D
+ │                          Named…         N
+ ├─ Attach to…         A  ▸  1  main (attached)
+ │                          2  work
+ ├─ Kill session       K  ▸  1  main …
+ ├─ ───────────
+ ├─ Detach             D
+ └─ Close session      C
+```
+
 ## Install
 
 Settings → Plugins → search for `tabby-control-tmux`, then restart Tabby.

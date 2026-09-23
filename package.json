@@ -4,7 +4,8 @@
   "description": "ControlTmux: right-click tmux controls for SSH tabs: new, attach, detach, close, and one-click tmux install",
   "keywords": ["tabby-plugin"],
   "main": "dist/index.js",
-  "files": ["dist"],
+  "typings": "typings/index.d.ts",
+  "files": ["dist", "typings"],
   "scripts": {
     "build": "webpack --mode production",
     "watch": "webpack --mode development --watch"
