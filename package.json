@@ -1,0 +1,26 @@
+{
+  "name": "tabby-ssh-tmux",
+  "version": "0.1.0",
+  "description": "Right-click tmux controls for SSH tabs: new, attach, detach, close, and one-click tmux install",
+  "keywords": ["tabby-plugin"],
+  "main": "dist/index.js",
+  "files": ["dist"],
+  "scripts": {
+    "build": "webpack --mode production",
+    "watch": "webpack --mode development --watch"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "tabby-core": "*",
+    "tabby-ssh": "*",
+    "tabby-terminal": "*"
+  },
+  "devDependencies": {
+    "@angular/core": "^15",
+    "rxjs": "^7",
+    "ts-loader": "^9",
+    "typescript": "~4.9",
+    "webpack": "^5",
+    "webpack-cli": "^5"
+  }
+}
