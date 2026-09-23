@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core'
-import { SSHTabComponent } from 'tabby-ssh'
+import { log } from './log'
+
+type SSHTabComponent = any
 
 export interface TmuxSessionInfo { name: string, windows: number, attached: boolean }
 
@@ -23,10 +25,15 @@ export class TmuxService {
         }
         const ch = await ssh.activateChannel(await ssh.openSessionChannel())
         const chunks: Uint8Array[] = []
-        const done = new Promise<void>(resolve => ch.closed$.subscribe({ complete: resolve, next: resolve }))
+        const done = new Promise<void>(resolve => {
+            ch.closed$.subscribe({ complete: resolve, next: resolve })
+            ch.eof$.subscribe({ complete: resolve, next: resolve })
+            setTimeout(resolve, 8000)
+        })
         ch.data$.subscribe((d: Uint8Array) => chunks.push(d))
         await ch.requestExec(command)
         await done
+        log(`exec ${command.slice(0, 60)} -> ${Buffer.concat(chunks).toString().slice(0, 100)}`)
         return { out: Buffer.concat(chunks).toString(), ok: true }
     }
 
@@ -60,6 +67,10 @@ export class TmuxService {
     private q (s: string): string { return `'${s.replace(/'/g, "'\\''")}'` }
     newSession (tab: SSHTabComponent, name?: string): void { tab.sendInput(`tmux new-session${name ? ' -s ' + this.q(name) : ''}\r`) }
     attach (tab: SSHTabComponent, name: string): void { tab.sendInput(`tmux attach-session -t ${this.q(name)}\r`) }
+    /** Types the command prefix without Enter so the user can type a name */
+    newNamedSession (tab: SSHTabComponent): void { tab.sendInput('tmux new-session -s ') }
+    /** Kills the session this terminal is attached to */
+    closeCurrent (tab: SSHTabComponent): void { tab.sendInput('tmux kill-session\r') }
     detach (tab: SSHTabComponent): void { tab.sendInput('tmux detach-client 2>/dev/null\r') }
     async kill (tab: SSHTabComponent, name: string): Promise<void> { await this.exec(tab, `tmux kill-session -t ${this.q(name)}`) }
     install (tab: SSHTabComponent, cmd: string): void { tab.sendInput(cmd + '\r') }

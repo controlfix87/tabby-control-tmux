@@ -1,7 +1,7 @@
 {
-  "name": "tabby-ssh-tmux",
+  "name": "tabby-control-tmux",
   "version": "0.1.0",
-  "description": "Right-click tmux controls for SSH tabs: new, attach, detach, close, and one-click tmux install",
+  "description": "ControlTmux: right-click tmux controls for SSH tabs: new, attach, detach, close, and one-click tmux install",
   "keywords": ["tabby-plugin"],
   "main": "dist/index.js",
   "files": ["dist"],
@@ -9,6 +9,7 @@
     "build": "webpack --mode production",
     "watch": "webpack --mode development --watch"
   },
+  "author": "Nir Israel Hen",
   "license": "MIT",
   "peerDependencies": {
     "tabby-core": "*",
