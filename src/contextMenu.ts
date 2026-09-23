@@ -1,24 +1,12 @@
 import { Injectable } from '@angular/core'
 import { BaseTabComponent, TabContextMenuItemProvider, MenuItemOptions } from 'tabby-core'
-import { TerminalContextMenuItemProvider } from 'tabby-terminal'
 import { log } from './log'
 import { TmuxService } from './tmux.service'
 
 @Injectable()
 export class TmuxContextMenu extends TabContextMenuItemProvider {
-    weight = 20
-
-    constructor (private tmux: TmuxService) { super() }
-
-    getItems (tab: BaseTabComponent): Promise<MenuItemOptions[]> {
-        return buildTmuxItems(this.tmux, tab)
-    }
-}
-
-/** Right-click menu inside the terminal body */
-@Injectable()
-export class TmuxTerminalContextMenu extends TerminalContextMenuItemProvider {
-    weight = 20
+    // just above 'Save as profile' (weight 0); the menu adds dividers around each provider's section
+    weight = -0.5
 
     constructor (private tmux: TmuxService) { super() }
 
